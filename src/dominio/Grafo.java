@@ -8,6 +8,12 @@ public class Grafo{
     public Set <Arista> rutas;
     public Map <String, List<Arista>> adyacencias;
 
+    public Grafo(){
+        planetas = new HashSet<>();
+        rutas = new HashSet<>();
+        adyacencias = new HashMap<>();
+    }
+
     public void agregarPlaneta(String planeta){
         planetas.add(planeta);
         adyacencias.put(planeta, new ArrayList<>());
@@ -24,11 +30,11 @@ public class Grafo{
     public List<String> obtenerAdyacencias(String planeta){
         if (planetas.contains(planeta)){
             List<Arista> lista = adyacencias.get(planeta);
-            List<String> nombres = new ArrayList<>();
-            for (int i = 0; i<lista.size(); i++){
-                nombres.add(lista.get(i).planeta2);
+            List<String> adyacentes = new ArrayList<>();
+            for (Arista arista : lista) {
+                adyacentes.add(arista.planeta2);
             }
-            return nombres;
+            return adyacentes;
         }
         return null;
     }
