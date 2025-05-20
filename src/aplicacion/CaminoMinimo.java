@@ -74,12 +74,11 @@ public class CaminoMinimo {
 
 
                 for (Arista arista : grafo.adyacencias.get(actual)){
-                    String adyacente = arista.planeta2;
-                    if (!visitados.contains(adyacente)){
+                    if (!visitados.contains(arista.planeta2)){
                         int distanciaActualizada = distancias.get(actual) + arista.distancia;
-                        if (distanciaActualizada < distancias.get(adyacente)){
-                            distancias.put(adyacente, distanciaActualizada);
-                            actualAnterior.put(adyacente, actual);
+                        if (distanciaActualizada < distancias.get(arista.planeta2)){
+                            distancias.put(arista.planeta2, distanciaActualizada);
+                            actualAnterior.put(arista.planeta2, actual);
 
                         }
                     }
@@ -94,6 +93,7 @@ public class CaminoMinimo {
     public void calcularYMostrarCaminoMinimo(String inicio, String fin){
         Map<String, Integer> distancias = new HashMap<>();
         Set<String> visitados = new HashSet<>();
+        //Hemos creado, para mostrar el camino, una lista que nos indicara el actual en funcion del anterior.
         Map<String, String> actualAnterior = new HashMap<>();
 
         calcularCaminosMinimosATodos(inicio, distancias, visitados, actualAnterior);
