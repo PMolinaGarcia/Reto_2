@@ -5,11 +5,14 @@ import java.util.*;
 public class Grafo{
 
     public Set <String> planetas;
+    //Un conjunto de aristas sobra, teniendo en el mapa almacenada la relación vértice-arista
     public Set <Arista> rutas;
     public Map <String, List<Arista>> adyacencias;
 
     public Grafo(){
-        planetas = new HashSet<>();
+        //Un HashSet es complicado de recorrer; mejor lo cambiamos por otro tipo de Set que recorra más
+        //fácilmente.
+        planetas = new TreeSet<>();
         rutas = new HashSet<>();
         adyacencias = new HashMap<>();
     }
@@ -37,6 +40,15 @@ public class Grafo{
             return adyacentes;
         }
         return null;
+    }
+
+    public int obtenerCoste(String planetaOrigen, String planetaDestino){
+        for (int i = 0; i<adyacencias.get(planetaOrigen).size(); i++){
+            if (adyacencias.get(planetaOrigen).get(i).planeta2.compareTo(planetaDestino)==0){
+                return adyacencias.get(planetaOrigen).get(i).distancia;
+            }
+        }
+        return Integer.MAX_VALUE;
     }
 
 }

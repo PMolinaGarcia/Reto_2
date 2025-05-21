@@ -93,7 +93,7 @@ public class CaminoMinimo {
     public void calcularYMostrarCaminoMinimo(String inicio, String fin){
         Map<String, Integer> distancias = new HashMap<>();
         Set<String> visitados = new HashSet<>();
-        //Hemos creado, para mostrar el camino, una lista que nos indicara el actual en funcion del anterior.
+        //Hemos creado, para mostrar el camino, un mapa que nos indique el actual en funcion del anterior.
         Map<String, String> actualAnterior = new HashMap<>();
 
         calcularCaminosMinimosATodos(inicio, distancias, visitados, actualAnterior);
