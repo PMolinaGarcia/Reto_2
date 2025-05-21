@@ -24,15 +24,18 @@ public class CaminoMinimo {
 
     /**
      * Algoritmo de Dijsktra
-     * @param vertice Es el vértice del grafo (en este caso, un planeta) del cual calculamos todos los caminos mínimos.
-     * @param distancias Es un mapa en el que almacenamos cada planeta de destino con la distancia correspondiente.
-     * @param visitados Es el set en el que guardamos los planetas que hemos visitado.
      */
-    public void calcularCaminosMinimosATodos(String vertice, Map<String, Integer> distancias, Set<String> visitados, Map<String, String> actualAnterior){
-        /**
-         * En primer lugar, comprobamos que existe en el grafo el planeta del que calculamos las distancias.
-          */
-        if (grafo.planetas.contains(vertice)) {
+
+
+    public void calcularYMostrarCaminoMinimo(String inicio, String fin){
+
+
+        Map<String, Integer> distancias = new HashMap<>();
+        //Hemos creado, para mostrar el camino, un mapa que nos indique el actual en funcion del anterior.
+        Map<String, String> actualAnterior = new HashMap<>();
+        Set<String> visitados = new TreeSet<>();
+
+        if (grafo.planetas.contains(inicio)) {
 
             /**
              * Después, para cada planeta existente, inicializamos la distancia desde el inicio hasta él en infinito. Añadimos a las distancias la distancia del propio planeta a sí mismo como 0.
@@ -40,7 +43,7 @@ public class CaminoMinimo {
             for (String planeta : grafo.planetas) {
                 distancias.put(planeta, Integer.MAX_VALUE);
             }
-            distancias.put(vertice, 0);
+            distancias.put(inicio, 0);
 
             /**
              * Hasta que hayamos visitados todos los planetas, inicializamos una variable que representará al planeta (nodo) con el que estemos trabajando.
@@ -87,16 +90,6 @@ public class CaminoMinimo {
             }
 
         }
-
-    }
-
-    public void calcularYMostrarCaminoMinimo(String inicio, String fin){
-        Map<String, Integer> distancias = new HashMap<>();
-        Set<String> visitados = new HashSet<>();
-        //Hemos creado, para mostrar el camino, un mapa que nos indique el actual en funcion del anterior.
-        Map<String, String> actualAnterior = new HashMap<>();
-
-        calcularCaminosMinimosATodos(inicio, distancias, visitados, actualAnterior);
 
         ArrayList <String> caminoAlReves = new ArrayList<>();
         ArrayList <String> camino = new ArrayList<>();
